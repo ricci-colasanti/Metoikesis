@@ -1,0 +1,26 @@
+# Metoikesis - Fyne Application Configuration
+# This file is used by the fyne command-line tools for building and packaging
+
+[Migrations]
+# Opt-in to the new threading model
+# This removes the "fyne.Do threading model" warning
+FyneDo = true
+
+[Details]
+# Application ID - used for preferences storage
+# Must be unique across all applications
+ID = "com.metoikesis.model"
+
+# Application name
+Name = "Metoikesis"
+
+# Version string
+Version = "0.1.0"
+
+# Build metadata
+Build = 1
+
+[Icon]
+# Icon path (relative to this file)
+# Uncomment and set to a valid image file when you have one
+# Source = "img/icon.png"
