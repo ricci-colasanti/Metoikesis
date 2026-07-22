@@ -10,6 +10,14 @@
 
 ![Metoikesis Simulation Screenshot](img/screen_1.png)
 
+## Theoretical Framework
+
+This is a theoretical model of local and regional migration that uses Schelling's segregation model as our starting point for generating emergent spatial structure. The framework begins by constructing local areas through iterative shell expansion, then links these areas to enable within-region movement.
+
+Each cell in the model exhibits varying levels of attractiveness, which is determined primarily by its neighboring cells through a local interaction mechanism. Beyond this base attractiveness, we can additionally assign hierarchical levels of attractiveness to entire areas, allowing us to capture multi-scale variation in migration preferences across the region.
+
+This dual-layered attractiveness structure enables the model to simulate both micro-level movement patterns (driven by local neighborhood effects) and macro-level flow tendencies (driven by area-level characteristics).
+
 ## Overview
 
 Metoikesis moves beyond traditional Schelling segregation models by incorporating:
@@ -18,6 +26,7 @@ Metoikesis moves beyond traditional Schelling segregation models by incorporatin
 - **Multi-area dynamics** – agents can move within their area OR migrate between two distinct regions
 - **Income-based similarity** – agents prefer neighbors with similar income levels
 - **Origin tracking** – visual indicators show migration history
+- **Dual-layer attractiveness** – local neighborhood effects combined with area-level preferences
 
 ## Key Features
 
@@ -152,6 +161,15 @@ Metoikesis is designed to be extended. Planned features include:
 - [ ] Statistical analysis tools (Gini coefficient, segregation indices)
 - [ ] Network visualization of migration flows
 - [ ] Configurable agent generation parameters
+- [ ] Hierarchical area attractiveness levels
+
+## Authors
+
+**Nik Lomax**  
+**Alison Heppenstall**  
+**Hugh Rice**  
+**Andreas Hoehn**  
+**Ric Colasanti**
 
 ## License
 
