@@ -1,12 +1,14 @@
 
+<div align="left">
+  <img src="img/Metoikesis.png" alt="Sextant Logo" width="300" height="300">
+  <p><em>Sextant — Simple Microsimulation Engine</em></p>
+</div>
+
 # Metoikesis
 
-[![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://go.dev/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **Metoikesis** (μετοίκησις) - from the ancient Greek word meaning "permanent change of residence" - is a spatial migration model for human geographers. It simulates the movement and settlement patterns of populations based on socioeconomic attributes, allowing researchers to explore how individual decisions aggregate into spatial patterns.
 
-![Metoikesis Screenshot](img/Metoikesis.png)
 
 ## Overview
 
