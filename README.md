@@ -1,7 +1,7 @@
 
 <div align="left">
   <img src="img/Metoikesis.png" alt="Sextant Logo" width="300" height="300">
-  <p><em>Sextant — Simple Microsimulation Engine</em></p>
+ 
 </div>
 
 # Metoikesis
