@@ -201,6 +201,30 @@ func (g *GUI) SetDisplayMode(mode DisplayMode) {
 	g.UpdateImages()
 }
 
+// splitLayout places two children side by side with a configurable gap.
+type splitLayout struct {
+	gap float32
+}
+
+func (l *splitLayout) Layout(objects []fyne.CanvasObject, size fyne.Size) {
+	if len(objects) < 2 {
+		return
+	}
+	imgWidth := (size.Width - l.gap) / 2
+	imgHeight := size.Height
+
+	objects[0].Move(fyne.NewPos(0, 0))
+	objects[0].Resize(fyne.NewSize(imgWidth, imgHeight))
+
+	objects[1].Move(fyne.NewPos(imgWidth+l.gap, 0))
+	objects[1].Resize(fyne.NewSize(imgWidth, imgHeight))
+}
+
+func (l *splitLayout) MinSize(objects []fyne.CanvasObject) fyne.Size {
+	// Return a reasonable minimum so the window knows a baseline
+	return fyne.NewSize(400, 300)
+}
+
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
@@ -213,14 +237,16 @@ func main() {
 	window := app.NewWindow("Metoikesis - Two Area Migration Model")
 
 	// Fixed window size
-	window.Resize(fyne.NewSize(1100, 500))
+	window.Resize(fyne.NewSize(1100, 550))
 
 	// Create image widgets for both areas
 	imageWidget0 := canvas.NewImageFromImage(nil)
-	imageWidget0.FillMode = canvas.ImageFillStretch
+	imageWidget0.FillMode = canvas.ImageFillContain
+	imageWidget0.ScaleMode = canvas.ImageScaleSmooth
 
 	imageWidget1 := canvas.NewImageFromImage(nil)
-	imageWidget1.FillMode = canvas.ImageFillStretch
+	imageWidget1.FillMode = canvas.ImageFillContain
+	imageWidget1.ScaleMode = canvas.ImageScaleSmooth
 
 	// Create GUI controller
 	gui := NewGUI(world, imageWidget0, imageWidget1)
@@ -228,24 +254,10 @@ func main() {
 	// Initial render
 	gui.UpdateImages()
 
-	// Create a container without layout to manually position images
-	content := container.NewWithoutLayout(imageWidget0, imageWidget1)
-
-	// Function to update image positions and sizes
-	layoutAreas := func(size fyne.Size) {
-		gap := float32(10)
-		imgWidth := (size.Width - gap) / 2
-		imgHeight := size.Height
-
-		imageWidget0.Move(fyne.NewPos(0, 0))
-		imageWidget0.Resize(fyne.NewSize(imgWidth, imgHeight))
-
-		imageWidget1.Move(fyne.NewPos(imgWidth+gap, 0))
-		imageWidget1.Resize(fyne.NewSize(imgWidth, imgHeight))
-	}
-
-	// Perform initial layout
-	layoutAreas(window.Canvas().Size())
+	// Create container with custom layout that positions the two images
+	// side by side with a gap. Fyne calls Layout() automatically on creation
+	// and on every window resize — no manual positioning needed.
+	content := container.New(&splitLayout{gap: 10}, imageWidget0, imageWidget1)
 
 	// Set the content
 	window.SetContent(content)
